@@ -11,6 +11,9 @@
       "default": "./dist/edible-wc.js"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist/"
   ],
@@ -21,6 +24,10 @@
     "test:watch": "vitest",
     "lint": "eslint src/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svmukhin/edible-web-components"
+  },
   "keywords": [
     "web-components",
     "custom-elements",
@@ -29,6 +36,10 @@
   ],
   "author": "Sergei Mukhin",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/svmukhin/edible-web-components/issues"
+  },
+  "homepage": "https://svmukhin.github.io/edible-web-components/",
   "peerDependencies": {
     "@svmukhin/edible-css": "^1.0.0"
   },
