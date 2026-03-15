@@ -10,17 +10,15 @@ SPDX-PackageDownloadLocation = "https://github.com/svmukhin/edible-css"
 path = [
   "dist/**",
   "package-lock.json",
-  "test/backstop/test/**",
-  "test/backstop/reference/**",
   "node_modules/**",
   ".gitignore",
   "package.json",
   ".markdownlint-cli2.yaml",
   "backstop.json",
-  "test/backstop/backstop.json",
-  ".pa11yci.json",
   "**.md",
   "docs/**.md",
+  "eslint.config.js",
+  "vite.config.js"
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Copyright (c) 2026 Sergei Mukhin"
