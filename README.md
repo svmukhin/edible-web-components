@@ -3,6 +3,20 @@
 Interactive web components for [EdibleCSS](https://github.com/svmukhin/edible-css).
 Same philosophy — just add HTML, get styled components. No classes. No configuration.
 
+## Features
+
+- **Zero Classes** — Attribute-based API only, no CSS classes required
+- **Single Script Tag** — Add `<script src="edible-wc.js" defer></script>` and
+  all components activate
+- **EdibleCSS Tokens** — Colors, spacing, and dark mode work automatically via
+  inherited custom properties
+- **Accessible** — Full ARIA wiring, keyboard navigation, and focus management
+  built in
+- **Form-ready** — Form components participate in `FormData` natively
+- **Tiny** — Under 6 KB gzipped for the full component set
+- **No Shadow DOM** — Light DOM first; EdibleCSS styles cascade in naturally
+- **Modern Browsers** — Chrome, Firefox, Safari, Edge (last 2 versions)
+
 ## What Is This?
 
 EdibleCSS styles native HTML5 elements automatically. But some UI patterns
@@ -246,6 +260,61 @@ natively in all target browsers.
 | Covers             | Native HTML5 elements | Interactive custom elements     |
 | Versioned together | —                     | Tracks EdibleCSS major versions |
 
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Build (outputs dist/edible-wc.js and dist/edible-wc.esm.js)
+npm run build
+
+# Run tests
+npm test
+```
+
+## Contributing
+
+Contributions are welcome! Please note that edible-web-components is intentionally
+minimal and opinionated. New components must align with the
+[EdibleCSS constitution](docs/constitution.md) principles.
+
+### Commit Message Format
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/)
+for automated versioning and changelog generation. Please format your commit
+messages as:
+
+```text
+<type>(<scope>): <description>
+
+[optional body]
+[optional footer]
+```
+
+**Types:**
+
+- `feat:` - New feature (bumps minor version)
+- `fix:` - Bug fix (bumps patch version)
+- `docs:` - Documentation only changes
+- `style:` - Code style changes (formatting, missing semi-colons, etc)
+- `refactor:` - Code refactoring
+- `test:` - Adding or updating tests
+- `chore:` - Maintenance tasks
+
+**Examples:**
+
+```bash
+git commit -m "feat: add print stylesheet"
+git commit -m "fix(forms): correct input border radius"
+git commit -m "docs: update CDN installation instructions"
+```
+
 ## License
 
-MIT © Sergei Mukhin
+MIT — see [LICENSE.txt](LICENSE.txt) for details.
+
+## Credits
+
+Created by [Sergei Mukhin](https://github.com/svmukhin).
+Built for use with [EdibleCSS](https://github.com/svmukhin/edible-css).
