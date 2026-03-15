@@ -42,6 +42,9 @@ SHEET.replaceSync(`
     display: block;
     padding: var(--space-md, 1rem) 0;
   }
+  edible-tab[hidden] {
+    display: none;
+  }
 `);
 
 /** @type {boolean} */
