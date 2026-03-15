@@ -1,128 +1,164 @@
-<!doctype html>
 <!--
   SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
   SPDX-License-Identifier: MIT
 -->
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>edible-badge — Examples</title>
-    <link rel="stylesheet" href="../../tmp/edible.css" />
-    <script src="../../dist/edible-wc.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css"
+    />
+    <script
+      src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+      defer
+    ></script>
   </head>
   <body>
-    <h1>edible-badge</h1>
-    <p>
-      A pill-style status badge. The element itself is the badge surface — no
-      wrapper needed. Use the <code>type</code> attribute to switch colour variant.
-    </p>
+    <main>
+      <article>
+        <h1>edible-badge</h1>
+        <p>
+          A pill-style status badge. The element itself is the badge surface —
+          no wrapper needed. Use the <code>type</code> attribute to switch
+          colour variant.
+        </p>
 
-    <hr />
+        <hr />
 
-    <h2>Variants</h2>
-    <p>Default (accent colour) plus three semantic types.</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
-      <edible-badge>New</edible-badge>
-      <edible-badge type="success">Active</edible-badge>
-      <edible-badge type="warning">Pending</edible-badge>
-      <edible-badge type="error">Failed</edible-badge>
-    </div>
+        <h2>Variants</h2>
+        <p>Default (accent colour) plus three semantic types.</p>
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+          "
+        >
+          <edible-badge>New</edible-badge>
+          <edible-badge type="success">Active</edible-badge>
+          <edible-badge type="warning">Pending</edible-badge>
+          <edible-badge type="error">Failed</edible-badge>
+        </div>
 
-    <hr />
+        <hr />
 
-    <h2>Inline with text</h2>
-    <p>Badges are <code>display: inline-flex</code> and sit naturally in a line of text.</p>
-    <p>
-      Pull request #42
-      <edible-badge type="success">Merged</edible-badge>
-      was reviewed yesterday.
-    </p>
-    <p>
-      Issue #17
-      <edible-badge type="error">Closed</edible-badge>
-      has been resolved.
-    </p>
-    <p>
-      Release 2.0
-      <edible-badge type="warning">Draft</edible-badge>
-      is awaiting approval.
-    </p>
+        <h2>Inline with text</h2>
+        <p>
+          Badges are <code>display: inline-flex</code> and sit naturally in a
+          line of text.
+        </p>
+        <p>
+          Pull request #42
+          <edible-badge type="success">Merged</edible-badge>
+          was reviewed yesterday.
+        </p>
+        <p>
+          Issue #17
+          <edible-badge type="error">Closed</edible-badge>
+          has been resolved.
+        </p>
+        <p>
+          Release 2.0
+          <edible-badge type="warning">Draft</edible-badge>
+          is awaiting approval.
+        </p>
 
-    <hr />
+        <hr />
 
-    <h2>Inside a table</h2>
-    <p>Common pattern: status column in a data table.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Task</th>
-          <th>Assignee</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Design review</td>
-          <td>Alice</td>
-          <td><edible-badge type="success">Done</edible-badge></td>
-        </tr>
-        <tr>
-          <td>API integration</td>
-          <td>Bob</td>
-          <td><edible-badge type="warning">In progress</edible-badge></td>
-        </tr>
-        <tr>
-          <td>Write tests</td>
-          <td>Carol</td>
-          <td><edible-badge>Backlog</edible-badge></td>
-        </tr>
-        <tr>
-          <td>Deploy to staging</td>
-          <td>Dave</td>
-          <td><edible-badge type="error">Blocked</edible-badge></td>
-        </tr>
-      </tbody>
-    </table>
+        <h2>Inside a table</h2>
+        <p>Common pattern: status column in a data table.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Assignee</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Design review</td>
+              <td>Alice</td>
+              <td><edible-badge type="success">Done</edible-badge></td>
+            </tr>
+            <tr>
+              <td>API integration</td>
+              <td>Bob</td>
+              <td><edible-badge type="warning">In progress</edible-badge></td>
+            </tr>
+            <tr>
+              <td>Write tests</td>
+              <td>Carol</td>
+              <td><edible-badge>Backlog</edible-badge></td>
+            </tr>
+            <tr>
+              <td>Deploy to staging</td>
+              <td>Dave</td>
+              <td><edible-badge type="error">Blocked</edible-badge></td>
+            </tr>
+          </tbody>
+        </table>
 
-    <hr />
+        <hr />
 
-    <h2>Dynamic type via JavaScript</h2>
-    <p>
-      Set or remove the <code>type</code> attribute at any time — the CSS
-      attribute selector picks up the change immediately.
-    </p>
-    <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
-      <edible-badge id="dynamic-badge">New</edible-badge>
-      <button id="btn-success">→ success</button>
-      <button id="btn-warning">→ warning</button>
-      <button id="btn-error">→ error</button>
-      <button id="btn-default">→ default</button>
-    </div>
-    <script>
-      customElements.whenDefined('edible-badge').then(() => {
-        const badge = document.getElementById('dynamic-badge');
-        document.getElementById('btn-success').addEventListener('click', () => {
-          badge.setAttribute('type', 'success');
-          badge.textContent = 'Active';
-        });
-        document.getElementById('btn-warning').addEventListener('click', () => {
-          badge.setAttribute('type', 'warning');
-          badge.textContent = 'Pending';
-        });
-        document.getElementById('btn-error').addEventListener('click', () => {
-          badge.setAttribute('type', 'error');
-          badge.textContent = 'Failed';
-        });
-        document.getElementById('btn-default').addEventListener('click', () => {
-          badge.removeAttribute('type');
-          badge.textContent = 'New';
-        });
-      });
-    </script>
+        <h2>Dynamic type via JavaScript</h2>
+        <p>
+          Set or remove the <code>type</code> attribute at any time — the CSS
+          attribute selector picks up the change immediately.
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            flex-wrap: wrap;
+          "
+        >
+          <edible-badge id="dynamic-badge">New</edible-badge>
+          <button id="btn-success">→ success</button>
+          <button id="btn-warning">→ warning</button>
+          <button id="btn-error">→ error</button>
+          <button id="btn-default">→ default</button>
+        </div>
+        <script>
+          customElements.whenDefined("edible-badge").then(() => {
+            const badge = document.getElementById("dynamic-badge");
+            document
+              .getElementById("btn-success")
+              .addEventListener("click", () => {
+                badge.setAttribute("type", "success");
+                badge.textContent = "Active";
+              });
+            document
+              .getElementById("btn-warning")
+              .addEventListener("click", () => {
+                badge.setAttribute("type", "warning");
+                badge.textContent = "Pending";
+              });
+            document
+              .getElementById("btn-error")
+              .addEventListener("click", () => {
+                badge.setAttribute("type", "error");
+                badge.textContent = "Failed";
+              });
+            document
+              .getElementById("btn-default")
+              .addEventListener("click", () => {
+                badge.removeAttribute("type");
+                badge.textContent = "New";
+              });
+          });
+        </script>
 
-    <hr />
+        <hr />
 
-    <p><a href="../index.html">← All examples</a></p>
+        <p><a href="../index.html">← All examples</a></p>
+      </article>
+    </main>
   </body>
 </html>

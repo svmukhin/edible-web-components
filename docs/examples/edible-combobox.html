@@ -1,94 +1,137 @@
-<!doctype html>
 <!--
   SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
   SPDX-License-Identifier: MIT
 -->
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>edible-combobox — Examples</title>
-    <link rel="stylesheet" href="../../tmp/edible.css" />
-    <script src="../../dist/edible-wc.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css"
+    />
+    <script
+      src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+      defer
+    ></script>
   </head>
   <body>
-    <h1>edible-combobox</h1>
-    <p>
-      A searchable dropdown that replaces <code>&lt;select&gt;</code> when the
-      list needs filtering. Type to narrow options; navigate with arrow keys;
-      confirm with <kbd>Enter</kbd>.
-    </p>
+    <main>
+      <article>
+        <h1>edible-combobox</h1>
+        <p>
+          A searchable dropdown that replaces <code>&lt;select&gt;</code> when
+          the list needs filtering. Type to narrow options; navigate with arrow
+          keys; confirm with <kbd>Enter</kbd>.
+        </p>
 
-    <hr />
+        <hr />
 
-    <h2>Basic</h2>
-    <p>Declare <code>&lt;option&gt;</code> children — they are consumed on connect.</p>
-    <edible-combobox name="city" placeholder="Select a city…">
-      <option value="ams">Amsterdam</option>
-      <option value="ber">Berlin</option>
-      <option value="lon">London</option>
-      <option value="mad">Madrid</option>
-      <option value="par">Paris</option>
-      <option value="rom">Rome</option>
-      <option value="vie">Vienna</option>
-    </edible-combobox>
+        <h2>Basic</h2>
+        <p>
+          Declare <code>&lt;option&gt;</code> children — they are consumed on
+          connect.
+        </p>
+        <edible-combobox name="city" placeholder="Select a city…">
+          <option value="ams">Amsterdam</option>
+          <option value="ber">Berlin</option>
+          <option value="lon">London</option>
+          <option value="mad">Madrid</option>
+          <option value="par">Paris</option>
+          <option value="rom">Rome</option>
+          <option value="vie">Vienna</option>
+        </edible-combobox>
 
-    <hr />
+        <hr />
 
-    <h2>Pre-selected value</h2>
-    <p>Set <code>.value</code> via JavaScript after the element upgrades.</p>
-    <edible-combobox id="preselected" name="language" placeholder="Choose a language…">
-      <option value="js">JavaScript</option>
-      <option value="ts">TypeScript</option>
-      <option value="py">Python</option>
-      <option value="rs">Rust</option>
-      <option value="go">Go</option>
-    </edible-combobox>
-    <script>
-      customElements.whenDefined('edible-combobox').then(() => {
-        document.getElementById('preselected').value = 'ts';
-      });
-    </script>
+        <h2>Pre-selected value</h2>
+        <p>
+          Set <code>.value</code> via JavaScript after the element upgrades.
+        </p>
+        <edible-combobox
+          id="preselected"
+          name="language"
+          placeholder="Choose a language…"
+        >
+          <option value="js">JavaScript</option>
+          <option value="ts">TypeScript</option>
+          <option value="py">Python</option>
+          <option value="rs">Rust</option>
+          <option value="go">Go</option>
+        </edible-combobox>
+        <script>
+          customElements.whenDefined("edible-combobox").then(() => {
+            document.getElementById("preselected").value = "ts";
+          });
+        </script>
 
-    <hr />
+        <hr />
 
-    <h2>Disabled</h2>
-    <p>Add the <code>disabled</code> attribute to prevent any interaction.</p>
-    <edible-combobox name="disabled-example" placeholder="Not available" disabled>
-      <option value="a">Option A</option>
-      <option value="b">Option B</option>
-    </edible-combobox>
+        <h2>Disabled</h2>
+        <p>
+          Add the <code>disabled</code> attribute to prevent any interaction.
+        </p>
+        <edible-combobox
+          name="disabled-example"
+          placeholder="Not available"
+          disabled
+        >
+          <option value="a">Option A</option>
+          <option value="b">Option B</option>
+        </edible-combobox>
 
-    <hr />
+        <hr />
 
-    <h2>Inside a form</h2>
-    <p>
-      The component participates in form submission via a hidden
-      <code>&lt;input&gt;</code>. The selected value is included in
-      <code>FormData</code> under the <code>name</code> key.
-    </p>
-    <form id="demo-form" style="display: flex; flex-direction: column; gap: 1rem; max-width: 360px;">
-      <label for="framework-combo" style="font-weight: 600;">Framework</label>
-      <edible-combobox id="framework-combo" name="framework" placeholder="Pick a framework…" required>
-        <option value="react">React</option>
-        <option value="vue">Vue</option>
-        <option value="svelte">Svelte</option>
-        <option value="solid">Solid</option>
-        <option value="angular">Angular</option>
-      </edible-combobox>
-      <button type="submit">Submit</button>
-    </form>
-    <pre id="form-output" style="margin-top: 1rem;"></pre>
-    <script>
-      document.getElementById('demo-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const data = Object.fromEntries(new FormData(e.target));
-        document.getElementById('form-output').textContent = JSON.stringify(data, null, 2);
-      });
-    </script>
+        <h2>Inside a form</h2>
+        <p>
+          The component participates in form submission via a hidden
+          <code>&lt;input&gt;</code>. The selected value is included in
+          <code>FormData</code> under the <code>name</code> key.
+        </p>
+        <form
+          id="demo-form"
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 360px;
+          "
+        >
+          <label for="framework-combo" style="font-weight: 600"
+            >Framework</label
+          >
+          <edible-combobox
+            id="framework-combo"
+            name="framework"
+            placeholder="Pick a framework…"
+            required
+          >
+            <option value="react">React</option>
+            <option value="vue">Vue</option>
+            <option value="svelte">Svelte</option>
+            <option value="solid">Solid</option>
+            <option value="angular">Angular</option>
+          </edible-combobox>
+          <button type="submit">Submit</button>
+        </form>
+        <pre id="form-output" style="margin-top: 1rem"></pre>
+        <script>
+          document
+            .getElementById("demo-form")
+            .addEventListener("submit", (e) => {
+              e.preventDefault();
+              const data = Object.fromEntries(new FormData(e.target));
+              document.getElementById("form-output").textContent =
+                JSON.stringify(data, null, 2);
+            });
+        </script>
 
-    <hr />
+        <hr />
 
-    <p><a href="../index.html">← All examples</a></p>
+        <p><a href="../index.html">← All examples</a></p>
+      </article>
+    </main>
   </body>
 </html>
