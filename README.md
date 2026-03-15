@@ -3,8 +3,6 @@
 Interactive web components for [EdibleCSS](https://github.com/svmukhin/edible-css).
 Same philosophy — just add HTML, get styled components. No classes. No configuration.
 
-> **Status**: Planning phase. Not yet published.
-
 ## What Is This?
 
 EdibleCSS styles native HTML5 elements automatically. But some UI patterns
@@ -20,6 +18,8 @@ toast notification. Native HTML has no equivalent elements for these.
 
 ## Installation
 
+### CDN
+
 ```html
 <!-- 1. EdibleCSS (required peer) -->
 <link
@@ -28,7 +28,10 @@ toast notification. Native HTML has no equivalent elements for these.
 />
 
 <!-- 2. Web components -->
-<script src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js" defer></script>
+<script
+  src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+  defer
+></script>
 ```
 
 That's it. All components are now available as HTML tags.
@@ -39,6 +42,16 @@ That's it. All components are now available as HTML tags.
 > fires on an empty element. `defer` makes the script run after the full HTML
 > document is parsed, ensuring children are available on first connect.
 > If you load the script at the end of `<body>` instead, `defer` is not needed.
+
+### npm
+
+```sh
+npm install @svmukhin/edible-web-components
+```
+
+```js
+import "@svmukhin/edible-web-components";
+```
 
 ## Components
 
@@ -57,9 +70,22 @@ Replaces `<select>` when the list is long enough to need filtering.
 </edible-combobox>
 ```
 
-### `<edible-tags-input>` — Multi-value text input
+| Attribute     | Type    | Description                                |
+| ------------- | ------- | ------------------------------------------ |
+| `name`        | string  | Field name submitted with the form         |
+| `placeholder` | string  | Placeholder text shown in the search input |
+| `disabled`    | boolean | Disables the component                     |
+| `required`    | boolean | Marks the field as required                |
 
-For entering multiple values as removable tags (skills, recipients, labels).
+**Keyboard**: `Arrow Down/Up` navigate options · `Enter` selects
+· `Escape`/`Tab` closes.
+
+**JavaScript**: `.value` getter/setter to read or set the selected value.
+
+### `<edible-tags-input>` — Multi-value tag input
+
+For entering multiple values as removable pill tags (skills, recipients,
+labels).
 
 ```html
 <label for="skills">Skills</label>
@@ -67,8 +93,18 @@ For entering multiple values as removable tags (skills, recipients, labels).
 </edible-tags-input>
 ```
 
-Renders typed values as pill-style tags. Press `Enter` or `,` to confirm each tag.
-Submits as a comma-separated hidden field.
+| Attribute     | Type    | Description                           |
+| ------------- | ------- | ------------------------------------- |
+| `name`        | string  | Field name submitted with the form    |
+| `placeholder` | string  | Placeholder shown while no tags exist |
+| `disabled`    | boolean | Disables all interaction              |
+
+**Keyboard**: `Enter` or `,` commits a tag · `Backspace` on empty input removes
+the last tag.
+
+**JavaScript**: `.value` (array getter) · `.add(tag)` · `.remove(tag)`.
+
+Submits as a comma-separated hidden field under `name`.
 
 ### `<edible-file-drop>` — Drag-and-drop file upload
 
@@ -79,36 +115,87 @@ A styled drop target that wraps `<input type="file">`.
 </edible-file-drop>
 ```
 
-Shows file name(s) after selection. Falls back to a standard file picker on click.
+| Attribute  | Type    | Description                        |
+| ---------- | ------- | ---------------------------------- |
+| `name`     | string  | Field name submitted with the form |
+| `accept`   | string  | MIME types or extensions to accept |
+| `multiple` | boolean | Allow selecting multiple files     |
+| `disabled` | boolean | Disables interaction               |
+
+**Keyboard**: `Enter` or `Space` opens the file picker.
+
+**JavaScript**: `.files` getter returns the current `FileList`.
 
 ### `<edible-toast>` — Notification message
 
 Programmatically triggered notification that auto-dismisses.
 
 ```html
-<!-- Declare the outlet once -->
+<!-- Declare the outlet once, anywhere on the page -->
 <edible-toast id="notifications"></edible-toast>
 ```
 
 ```js
-document.getElementById("notifications").show("File saved successfully.");
-document.getElementById("notifications").show("Something went wrong.", "error");
+const t = document.getElementById("notifications");
+t.show("File saved successfully.");
+t.show("Something went wrong.", "error");
+t.show("Session expiring soon.", "warning", 8000);
 ```
+
+**Method**: `.show(message, type = 'info', duration = 4000)`
+
+| `type`    | Description      |
+| --------- | ---------------- |
+| `info`    | Default (accent) |
+| `success` | Green            |
+| `warning` | Yellow           |
+| `error`   | Red              |
+
+Toasts stack in the bottom-right corner and auto-dismiss after `duration` ms.
+A shared region element is reused across all `<edible-toast>` instances.
 
 ### `<edible-tooltip>` — Styled tooltip
 
 Replaces the browser's unstyled `title` attribute with a consistent popover.
+Place it as the last child of any interactive element.
 
 ```html
 <button>
   Delete
   <edible-tooltip>This action cannot be undone.</edible-tooltip>
 </button>
+
+<a href="/docs">
+  Learn more
+  <edible-tooltip>Opens the documentation page.</edible-tooltip>
+</a>
 ```
+
+Tooltip text comes from the element's `textContent`. Shows on hover and
+keyboard focus; `aria-describedby` is wired automatically.
+
+### `<edible-badge>` — Status badge
+
+A pill-style inline badge. The element itself is the badge surface.
+
+```html
+<edible-badge>New</edible-badge>
+<edible-badge type="success">Active</edible-badge>
+<edible-badge type="warning">Pending</edible-badge>
+<edible-badge type="error">Failed</edible-badge>
+```
+
+| `type`    | Color  |
+| --------- | ------ |
+| _(none)_  | Accent |
+| `success` | Green  |
+| `warning` | Yellow |
+| `error`   | Red    |
 
 ### `<edible-tabs>` — Tab panel
 
-Native HTML has no tab element. This fills the gap with minimal markup.
+Accessible tab interface. Declare `<edible-tab>` children with a `label`
+attribute — the tablist is built automatically.
 
 ```html
 <edible-tabs>
@@ -123,6 +210,12 @@ Native HTML has no tab element. This fills the gap with minimal markup.
   </edible-tab>
 </edible-tabs>
 ```
+
+**Keyboard**: `Arrow Left/Right` moves between tabs · `Home`/`End` jumps to
+first/last.
+
+Full ARIA wiring: `role="tablist"`, `role="tab"`, `role="tabpanel"`,
+`aria-selected`, `aria-controls`, `aria-labelledby`, roving `tabindex`.
 
 ## Design Tokens
 
@@ -139,8 +232,9 @@ No component-specific CSS variables needed.
 
 ## Browser Support
 
-Same as EdibleCSS: modern evergreen browsers (Chrome, Firefox, Safari, Edge).
-Custom Elements v1 is required — supported natively in all target browsers.
+Modern evergreen browsers (Chrome, Firefox, Safari, Edge).
+Custom Elements v1 and `adoptedStyleSheets` are required — both supported
+natively in all target browsers.
 
 ## Relationship to EdibleCSS
 
@@ -151,8 +245,6 @@ Custom Elements v1 is required — supported natively in all target browsers.
 | Uses classes       | Never                 | Never                           |
 | Covers             | Native HTML5 elements | Interactive custom elements     |
 | Versioned together | —                     | Tracks EdibleCSS major versions |
-
----
 
 ## License
 
