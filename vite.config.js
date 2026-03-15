@@ -10,7 +10,7 @@ export default defineConfig({
         format === 'es' ? 'edible-wc.esm.js' : 'edible-wc.js',
     },
     emptyOutDir: true,
-    minify: 'esbuild',
+    minify: 'oxc',
     cssCodeSplit: false,
   },
 
