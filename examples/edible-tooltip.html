@@ -1,0 +1,141 @@
+<!--
+    SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+    SPDX-License-Identifier: MIT
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edible-tooltip — Examples</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css"
+    />
+    <script
+      src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>edible-tooltip</h1>
+        <p>
+          A styled tooltip that replaces the browser's unstyled
+          <code>title</code> attribute. Place
+          <code>&lt;edible-tooltip&gt;</code> as a child of any interactive
+          element — it registers on its parent and shows on hover or keyboard
+          focus.
+        </p>
+
+        <hr />
+
+        <h2>On a button</h2>
+        <p>Hover or focus the button to reveal the tooltip.</p>
+        <button>
+          Delete item
+          <edible-tooltip>This action cannot be undone.</edible-tooltip>
+        </button>
+
+        <hr />
+
+        <h2>On a link</h2>
+        <p>Works on any focusable element.</p>
+        <a href="#">
+          Learn more
+          <edible-tooltip>Opens the documentation in a new tab.</edible-tooltip>
+        </a>
+
+        <hr />
+
+        <h2>On an icon button</h2>
+        <p>
+          Useful for icon-only controls where the label is not visible on
+          screen. The tooltip serves as the accessible description.
+        </p>
+        <div style="display: flex; gap: 1rem; align-items: center">
+          <button
+            aria-label="Copy to clipboard"
+            style="font-size: 1.25rem; padding: 0.5rem"
+          >
+            📋
+            <edible-tooltip>Copy to clipboard</edible-tooltip>
+          </button>
+          <button
+            aria-label="Download file"
+            style="font-size: 1.25rem; padding: 0.5rem"
+          >
+            ⬇️
+            <edible-tooltip>Download file</edible-tooltip>
+          </button>
+          <button
+            aria-label="Share"
+            style="font-size: 1.25rem; padding: 0.5rem"
+          >
+            🔗
+            <edible-tooltip>Copy share link</edible-tooltip>
+          </button>
+        </div>
+
+        <hr />
+
+        <h2>Multiple tooltips in a row</h2>
+        <p>Each element gets its own independent tooltip instance.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                Name
+                <edible-tooltip
+                  >The full display name of the user.</edible-tooltip
+                >
+              </th>
+              <th>
+                Role
+                <edible-tooltip
+                  >The user's permission level in the system.</edible-tooltip
+                >
+              </th>
+              <th>
+                Status
+                <edible-tooltip
+                  >Whether the account is currently active.</edible-tooltip
+                >
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Alice</td>
+              <td>Admin</td>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <td>Bob</td>
+              <td>Editor</td>
+              <td>Inactive</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <hr />
+
+        <h2>Long tooltip text</h2>
+        <p>The popup wraps at 280 px max-width.</p>
+        <button>
+          Help
+          <edible-tooltip>
+            This feature uses machine learning to automatically categorise your
+            content. Results may vary depending on the language and length of
+            the input.
+          </edible-tooltip>
+        </button>
+
+        <hr />
+
+        <p><a href="../index.html">← All examples</a></p>
+      </article>
+    </main>
+  </body>
+</html>

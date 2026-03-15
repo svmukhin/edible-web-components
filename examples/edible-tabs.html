@@ -1,0 +1,140 @@
+<!--
+  SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+  SPDX-License-Identifier: MIT
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edible-tabs — Examples</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css"
+    />
+    <script
+      src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>edible-tabs</h1>
+        <p>
+          A tab panel component. Declare
+          <code>&lt;edible-tab label="…"&gt;</code> children — the parent builds
+          the accessible tablist automatically. Navigate between tabs with
+          <kbd>ArrowLeft</kbd> / <kbd>ArrowRight</kbd>, jump to first/last with
+          <kbd>Home</kbd> / <kbd>End</kbd>.
+        </p>
+
+        <hr />
+
+        <h2>Basic</h2>
+        <edible-tabs>
+          <edible-tab label="Overview">
+            <h3>Overview</h3>
+            <p>
+              This is the overview tab. It is shown by default when the
+              component loads.
+            </p>
+          </edible-tab>
+          <edible-tab label="Details">
+            <h3>Details</h3>
+            <p>
+              Additional details are shown here once the Details tab is
+              activated.
+            </p>
+          </edible-tab>
+          <edible-tab label="History">
+            <h3>History</h3>
+            <p>A log of past events can be placed in this panel.</p>
+          </edible-tab>
+        </edible-tabs>
+
+        <hr />
+
+        <h2>With rich content</h2>
+        <p>Tab panels can contain any HTML — tables, forms, lists, and more.</p>
+        <edible-tabs>
+          <edible-tab label="Team">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Alice</td>
+                  <td>Lead</td>
+                  <td><edible-badge type="success">Active</edible-badge></td>
+                </tr>
+                <tr>
+                  <td>Bob</td>
+                  <td>Engineer</td>
+                  <td><edible-badge type="success">Active</edible-badge></td>
+                </tr>
+                <tr>
+                  <td>Carol</td>
+                  <td>Designer</td>
+                  <td><edible-badge type="warning">On leave</edible-badge></td>
+                </tr>
+              </tbody>
+            </table>
+          </edible-tab>
+          <edible-tab label="Settings">
+            <form
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                max-width: 360px;
+              "
+            >
+              <label>
+                Project name
+                <input type="text" value="My Project" />
+              </label>
+              <label>
+                Visibility
+                <select>
+                  <option>Public</option>
+                  <option>Private</option>
+                </select>
+              </label>
+              <button type="button">Save changes</button>
+            </form>
+          </edible-tab>
+          <edible-tab label="Notifications">
+            <ul>
+              <li>Email notifications — <strong>enabled</strong></li>
+              <li>Slack notifications — <strong>disabled</strong></li>
+              <li>Weekly digest — <strong>enabled</strong></li>
+            </ul>
+          </edible-tab>
+        </edible-tabs>
+
+        <hr />
+
+        <h2>Many tabs</h2>
+        <p>Tabs wrap naturally when they overflow the container width.</p>
+        <edible-tabs>
+          <edible-tab label="Alpha"><p>Content for Alpha.</p></edible-tab>
+          <edible-tab label="Beta"><p>Content for Beta.</p></edible-tab>
+          <edible-tab label="Gamma"><p>Content for Gamma.</p></edible-tab>
+          <edible-tab label="Delta"><p>Content for Delta.</p></edible-tab>
+          <edible-tab label="Epsilon"><p>Content for Epsilon.</p></edible-tab>
+          <edible-tab label="Zeta"><p>Content for Zeta.</p></edible-tab>
+        </edible-tabs>
+
+        <hr />
+
+        <p><a href="../index.html">← All examples</a></p>
+      </article>
+    </main>
+  </body>
+</html>

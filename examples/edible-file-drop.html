@@ -1,0 +1,124 @@
+<!--
+  SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+  SPDX-License-Identifier: MIT
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edible-file-drop — Examples</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css"
+    />
+    <script
+      src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>edible-file-drop</h1>
+        <p>
+          A styled drag-and-drop dropzone that wraps
+          <code>&lt;input type="file"&gt;</code>. Click to browse, or drag files
+          onto the target. Keyboard users can press <kbd>Enter</kbd> or
+          <kbd>Space</kbd> to open the file picker.
+        </p>
+
+        <hr />
+
+        <h2>Basic</h2>
+        <p>Single file. No type restriction.</p>
+        <edible-file-drop name="attachment"></edible-file-drop>
+
+        <hr />
+
+        <h2>Multiple files</h2>
+        <p>
+          Add the <code>multiple</code> attribute to allow selecting more than
+          one file.
+        </p>
+        <edible-file-drop name="photos" multiple></edible-file-drop>
+
+        <hr />
+
+        <h2>Restricted file types</h2>
+        <p>Use <code>accept</code> to limit selectable file types.</p>
+        <edible-file-drop
+          name="document"
+          accept=".pdf,.docx,.txt"
+        ></edible-file-drop>
+        <p>
+          <small
+            >Accepts: <code>.pdf</code>, <code>.docx</code>,
+            <code>.txt</code></small
+          >
+        </p>
+
+        <hr />
+
+        <h2>Image upload (multiple)</h2>
+        <edible-file-drop
+          name="images"
+          accept="image/*"
+          multiple
+        ></edible-file-drop>
+
+        <hr />
+
+        <h2>Disabled</h2>
+        <p>Add the <code>disabled</code> attribute to prevent interaction.</p>
+        <edible-file-drop name="locked" disabled></edible-file-drop>
+
+        <hr />
+
+        <h2>Inside a form</h2>
+        <p>
+          The hidden <code>&lt;input type="file"&gt;</code> participates in form
+          submission natively — no JavaScript required to include the file.
+        </p>
+        <form
+          id="demo-form"
+          enctype="multipart/form-data"
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 480px;
+          "
+        >
+          <label style="font-weight: 600">
+            Attach a file
+            <edible-file-drop
+              name="upload"
+              style="margin-top: 0.25rem"
+            ></edible-file-drop>
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+        <pre id="form-output" style="margin-top: 1rem"></pre>
+        <script>
+          document
+            .getElementById("demo-form")
+            .addEventListener("submit", (e) => {
+              e.preventDefault();
+              const data = {};
+              for (const [key, val] of new FormData(e.target)) {
+                data[key] =
+                  val instanceof File ? `${val.name} (${val.size} bytes)` : val;
+              }
+              document.getElementById("form-output").textContent =
+                JSON.stringify(data, null, 2);
+            });
+        </script>
+
+        <hr />
+
+        <p><a href="../index.html">← All examples</a></p>
+      </article>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,354 @@
+<!--
+  SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+  SPDX-License-Identifier: MIT
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="edible-web-components — Interactive web components for EdibleCSS. Just add HTML, get styled components. No classes."
+    />
+    <title>edible-web-components</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css"
+    />
+    <script
+      src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#components">Components</a></li>
+          <li>
+            <a href="https://github.com/svmukhin/edible-web-components"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h1>edible-web-components</h1>
+        <p>
+          Interactive web components for
+          <a href="https://github.com/svmukhin/edible-css">EdibleCSS</a>.
+        </p>
+        <p>
+          <strong
+            >Just add HTML, get styled components. No classes. No
+            configuration.</strong
+          >
+        </p>
+      </section>
+
+      <article id="about">
+        <h2>About</h2>
+        <p>
+          EdibleCSS styles native HTML5 elements automatically. But some UI
+          patterns genuinely require JavaScript — a searchable dropdown, a
+          multi-tag input, a toast notification. Native HTML has no equivalent
+          elements for these.
+        </p>
+        <p>
+          <code>edible-web-components</code> fills that gap with custom elements
+          that look and feel like native HTML5 tags, inherit EdibleCSS design
+          tokens automatically, and activate with a single
+          <code>&lt;script&gt;</code> tag.
+        </p>
+
+        <h3>Key Features</h3>
+        <ul>
+          <li>
+            <strong>Zero Classes:</strong> Use attribute APIs just like native
+            HTML attributes.
+          </li>
+          <li>
+            <strong>EdibleCSS Tokens:</strong> Colors, spacing, and dark mode
+            work automatically.
+          </li>
+          <li>
+            <strong>Accessible:</strong> Full ARIA wiring, keyboard navigation,
+            and focus management built in.
+          </li>
+          <li>
+            <strong>Form-ready:</strong> Form components participate in
+            <code>FormData</code> natively.
+          </li>
+          <li>
+            <strong>Tiny:</strong> Under 6 KB gzipped for the full component
+            set.
+          </li>
+          <li>
+            <strong>No Shadow DOM:</strong> Light DOM first — EdibleCSS styles
+            cascade in naturally.
+          </li>
+        </ul>
+      </article>
+
+      <article id="installation">
+        <h2>Installation</h2>
+
+        <h3>CDN</h3>
+        <p>
+          Add both EdibleCSS and the components to your
+          <code>&lt;head&gt;</code>:
+        </p>
+        <pre><code>&lt;link rel="stylesheet"
+  href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css" /&gt;
+
+&lt;script
+  src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+  defer&gt;&lt;/script&gt;</code></pre>
+        <p>
+          All components are now available as HTML tags. No JavaScript required
+          in your own code.
+        </p>
+        <p>
+          <strong>Always use <code>defer</code></strong> when loading in
+          <code>&lt;head&gt;</code>. Without it the script runs before child
+          elements (like <code>&lt;option&gt;</code> inside
+          <code>&lt;edible-combobox&gt;</code>) are parsed. Alternatively, place
+          the script at the end of <code>&lt;body&gt;</code>.
+        </p>
+
+        <h3>npm</h3>
+        <pre><code>npm install @svmukhin/edible-web-components</code></pre>
+        <pre><code>import '@svmukhin/edible-web-components';</code></pre>
+      </article>
+
+      <article id="components">
+        <h2>Components</h2>
+
+        <h3>Form components</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Description</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>&lt;edible-combobox&gt;</code></td>
+              <td>Searchable dropdown replacing <code>&lt;select&gt;</code></td>
+              <td><a href="examples/edible-combobox.html">View examples</a></td>
+            </tr>
+            <tr>
+              <td><code>&lt;edible-tags-input&gt;</code></td>
+              <td>Multi-value pill tag input</td>
+              <td>
+                <a href="examples/edible-tags-input.html">View examples</a>
+              </td>
+            </tr>
+            <tr>
+              <td><code>&lt;edible-file-drop&gt;</code></td>
+              <td>Drag-and-drop file upload zone</td>
+              <td>
+                <a href="examples/edible-file-drop.html">View examples</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Feedback components</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Description</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>&lt;edible-toast&gt;</code></td>
+              <td>Programmatic auto-dismissing notifications</td>
+              <td><a href="examples/edible-toast.html">View examples</a></td>
+            </tr>
+            <tr>
+              <td><code>&lt;edible-tooltip&gt;</code></td>
+              <td>Styled tooltip replacing the <code>title</code> attribute</td>
+              <td><a href="examples/edible-tooltip.html">View examples</a></td>
+            </tr>
+            <tr>
+              <td><code>&lt;edible-badge&gt;</code></td>
+              <td>Pill-style status badge</td>
+              <td><a href="examples/edible-badge.html">View examples</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Layout components</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Description</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>&lt;edible-tabs&gt;</code></td>
+              <td>Accessible tab panel with keyboard navigation</td>
+              <td><a href="examples/edible-tabs.html">View examples</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Live demos</h3>
+
+        <h4>edible-combobox</h4>
+        <edible-combobox
+          name="demo-city"
+          placeholder="Select a city…"
+          style="max-width: 320px"
+        >
+          <option value="ams">Amsterdam</option>
+          <option value="ber">Berlin</option>
+          <option value="lon">London</option>
+          <option value="par">Paris</option>
+          <option value="rom">Rome</option>
+        </edible-combobox>
+
+        <h4>edible-tags-input</h4>
+        <edible-tags-input
+          id="demo-tags"
+          name="demo-skills"
+          placeholder="Add a skill…"
+          style="max-width: 480px"
+        ></edible-tags-input>
+        <script>
+          customElements.whenDefined("edible-tags-input").then(() => {
+            document.getElementById("demo-tags").add("HTML");
+            document.getElementById("demo-tags").add("CSS");
+          });
+        </script>
+
+        <h4>edible-badge</h4>
+        <p>
+          <edible-badge>New</edible-badge>
+          &nbsp;
+          <edible-badge type="success">Active</edible-badge>
+          &nbsp;
+          <edible-badge type="warning">Pending</edible-badge>
+          &nbsp;
+          <edible-badge type="error">Failed</edible-badge>
+        </p>
+
+        <h4>edible-tooltip</h4>
+        <p>
+          Hover or focus this button:
+          <button style="margin-left: 0.5rem">
+            Help
+            <edible-tooltip
+              >This is an edible-tooltip. It appears on hover and keyboard
+              focus.</edible-tooltip
+            >
+          </button>
+        </p>
+
+        <h4>edible-toast</h4>
+        <edible-toast id="demo-toast"></edible-toast>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
+          <button id="toast-info">Info toast</button>
+          <button id="toast-success">Success toast</button>
+          <button id="toast-warning">Warning toast</button>
+          <button id="toast-error">Error toast</button>
+        </div>
+        <script>
+          customElements.whenDefined("edible-toast").then(() => {
+            const t = document.getElementById("demo-toast");
+            document
+              .getElementById("toast-info")
+              .addEventListener("click", () =>
+                t.show("This is an info notification.", "info"),
+              );
+            document
+              .getElementById("toast-success")
+              .addEventListener("click", () =>
+                t.show("File saved successfully.", "success"),
+              );
+            document
+              .getElementById("toast-warning")
+              .addEventListener("click", () =>
+                t.show("Session expiring in 5 minutes.", "warning"),
+              );
+            document
+              .getElementById("toast-error")
+              .addEventListener("click", () =>
+                t.show("Something went wrong. Try again.", "error"),
+              );
+          });
+        </script>
+
+        <h4>edible-tabs</h4>
+        <edible-tabs>
+          <edible-tab label="Overview">
+            <p>
+              This is the overview panel. Click another tab or press
+              <kbd>Arrow Left</kbd> / <kbd>Arrow Right</kbd> to navigate.
+            </p>
+          </edible-tab>
+          <edible-tab label="Details">
+            <p>
+              This is the details panel. Full keyboard and ARIA support is built
+              in.
+            </p>
+          </edible-tab>
+          <edible-tab label="History">
+            <p>This is the history panel. No configuration required.</p>
+          </edible-tab>
+        </edible-tabs>
+      </article>
+
+      <article>
+        <h2>Design Tokens</h2>
+        <p>
+          All components inherit EdibleCSS custom properties. Override at
+          <code>:root</code>
+          to affect both EdibleCSS and the components at once — no
+          component-specific variables needed.
+        </p>
+        <pre><code>:root {
+  --accent: #7c3aed; /* purple — applied everywhere automatically */
+}</code></pre>
+      </article>
+    </main>
+
+    <footer>
+      <hr />
+      <p>
+        <small>
+          <a href="https://github.com/svmukhin/edible-web-components">GitHub</a>
+          ·
+          <a href="https://github.com/svmukhin/edible-web-components/releases"
+            >Releases</a
+          >
+          ·
+          <a
+            href="https://www.npmjs.com/package/@svmukhin/edible-web-components"
+            >npm</a
+          >
+          ·
+          <a
+            href="https://github.com/svmukhin/edible-web-components/blob/master/LICENSE.txt"
+            >MIT License</a
+          >
+        </small>
+      </p>
+    </footer>
+  </body>
+</html>

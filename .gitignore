@@ -1,0 +1,104 @@
+# OS-specific Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Editor & IDE Files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# Node.js (if project uses npm/yarn)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+.pnpm-debug.log*
+
+# Build Artifacts & Distribution
+dist/
+build/
+out/
+target/
+*.min.css
+*.min.js
+*.map
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+*.key
+*.pem
+secrets/
+credentials/
+
+# Testing
+coverage/
+.nyc_output/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*$py.class
+.tox/
+.coverage
+htmlcov/
+
+# BackstopJS Visual Regression Testing
+test/backstop/test/
+test/backstop/html_report/
+test/backstop/ci_report/
+# Keep backstop.json and reference/ screenshots in version control
+
+# Python
+*.py[cod]
+__pycache__/
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+
+# Backup Files
+*.bak
+*.backup
+*~
+*.orig
+
+# Documentation Build Artifacts
+docs/_build/
+site/
+_site/
+
+# Keep Documentation Source
+# - README.md (REQUIRED)
+# - docs/ (if source documentation exists)
+
+/tmp

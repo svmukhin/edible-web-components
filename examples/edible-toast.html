@@ -1,0 +1,143 @@
+<!--
+  SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+  SPDX-License-Identifier: MIT
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edible-toast — Examples</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css"
+    />
+    <script
+      src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>edible-toast</h1>
+        <p>
+          Programmatic notification toasts. Declare one
+          <code>&lt;edible-toast&gt;</code> element anywhere on the page and
+          call <code>.show(message, type, duration)</code>
+          to trigger notifications. Toasts stack in the bottom-right corner and
+          auto-dismiss after the given duration.
+        </p>
+
+        <!-- Single shared outlet -->
+        <edible-toast id="toast"></edible-toast>
+
+        <hr />
+
+        <h2>Types</h2>
+        <p>
+          Four built-in types: <code>info</code> (default),
+          <code>success</code>, <code>warning</code>, and <code>error</code>.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
+          <button id="btn-info">Show info</button>
+          <button id="btn-success">Show success</button>
+          <button id="btn-warning">Show warning</button>
+          <button id="btn-error">Show error</button>
+        </div>
+
+        <hr />
+
+        <h2>Custom duration</h2>
+        <p>
+          The third argument sets the auto-dismiss delay in milliseconds.
+          Default is <code>4000</code>.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
+          <button id="btn-short">1 second</button>
+          <button id="btn-long">10 seconds</button>
+        </div>
+
+        <hr />
+
+        <h2>Stacking</h2>
+        <p>
+          Multiple toasts queue and stack vertically. Click to fire several at
+          once.
+        </p>
+        <button id="btn-stack">Fire 4 toasts</button>
+
+        <hr />
+
+        <h2>Manual dismiss</h2>
+        <p>
+          Each toast has a dismiss button. This example uses a very long
+          duration so the toast stays visible until you click
+          <strong>×</strong>.
+        </p>
+        <button id="btn-manual">Show persistent toast</button>
+
+        <hr />
+
+        <script>
+          customElements.whenDefined("edible-toast").then(() => {
+            const t = document.getElementById("toast");
+
+            document
+              .getElementById("btn-info")
+              .addEventListener("click", () =>
+                t.show("This is an informational message.", "info"),
+              );
+
+            document
+              .getElementById("btn-success")
+              .addEventListener("click", () =>
+                t.show("File saved successfully.", "success"),
+              );
+
+            document
+              .getElementById("btn-warning")
+              .addEventListener("click", () =>
+                t.show("Your session expires in 5 minutes.", "warning"),
+              );
+
+            document
+              .getElementById("btn-error")
+              .addEventListener("click", () =>
+                t.show("Something went wrong. Please try again.", "error"),
+              );
+
+            document
+              .getElementById("btn-short")
+              .addEventListener("click", () =>
+                t.show("Gone in 1 second.", "info", 1000),
+              );
+
+            document
+              .getElementById("btn-long")
+              .addEventListener("click", () =>
+                t.show("This toast lasts 10 seconds.", "info", 10000),
+              );
+
+            document
+              .getElementById("btn-stack")
+              .addEventListener("click", () => {
+                t.show("First notification.", "info");
+                t.show("Second notification.", "success");
+                t.show("Third notification.", "warning");
+                t.show("Fourth notification.", "error");
+              });
+
+            document
+              .getElementById("btn-manual")
+              .addEventListener("click", () =>
+                t.show("Dismiss me using the × button.", "info", 60000),
+              );
+          });
+        </script>
+
+        <p><a href="../index.html">← All examples</a></p>
+      </article>
+    </main>
+  </body>
+</html>
