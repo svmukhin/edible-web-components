@@ -1,0 +1,100 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+# SPDX-License-Identifier: MIT
+---
+# yamllint disable rule:line-length
+name: release-please
+'on':
+  push:
+    branches:
+      - master
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  release-please:
+    runs-on: ubuntu-24.04
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+
+  publish-npm:
+    runs-on: ubuntu-24.04
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build CSS
+        run: npm run build
+
+      - name: Minify CSS
+        run: npm run minify
+
+      - name: Verify dist files exist
+        run: |
+          test -f dist/edible.css || (echo "dist/edible.css not found" && exit 1)
+          test -f dist/edible.min.css || (echo "dist/edible.min.css not found" && exit 1)
+          echo "✅ Build artifacts verified"
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish confirmation
+        run: |
+          echo "🎉 Successfully published @svmukhin/edible-css@$(node -p "require('./package.json').version") to npm"
+
+  deploy-docs:
+    runs-on: ubuntu-24.04
+    needs: publish-npm
+    if: ${{ needs.release-please.outputs.release_created }}
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy to GitHub Pages
+        run: npx gh-pages -d docs -m 'Deploy documentation [ci skip]' -r "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deployment confirmation
+        run: |
+          echo "📄 Successfully deployed documentation to https://svmukhin.github.io/edible-css/"
