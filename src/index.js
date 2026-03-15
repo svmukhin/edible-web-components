@@ -17,3 +17,4 @@
 export { token, clearTokenCache } from './tokens.js';
 import './components/edible-combobox.js';
 import './components/edible-tags-input.js';
+import './components/edible-file-drop.js';
