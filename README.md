@@ -28,10 +28,17 @@ toast notification. Native HTML has no equivalent elements for these.
 />
 
 <!-- 2. Web components -->
-<script src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"></script>
+<script src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js" defer></script>
 ```
 
 That's it. All components are now available as HTML tags.
+
+> **Always use `defer`** when loading the script in `<head>`. Without it the
+> custom element is defined before the browser has parsed the component's child
+> elements (e.g. `<option>` inside `<edible-combobox>`), so `connectedCallback`
+> fires on an empty element. `defer` makes the script run after the full HTML
+> document is parsed, ensuring children are available on first connect.
+> If you load the script at the end of `<body>` instead, `defer` is not needed.
 
 ## Components
 

@@ -53,6 +53,9 @@ SHEET.replaceSync(`
   edible-combobox [role="option"]:hover {
     background: var(--bg-secondary);
   }
+  edible-combobox [role="listbox"][hidden] {
+    display: none;
+  }
   edible-combobox [data-empty] {
     padding: var(--space-xs) var(--space-sm);
     font-size: var(--font-sm);
