@@ -21,3 +21,4 @@ import './components/edible-file-drop.js';
 import './components/edible-toast.js';
 import './components/edible-tooltip.js';
 import './components/edible-badge.js';
+import './components/edible-tabs.js';
