@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+ * SPDX-License-Identifier: MIT
+ */
+
 import { describe, it, expect, afterEach } from 'vitest';
 import '../src/components/edible-combobox.js';
 

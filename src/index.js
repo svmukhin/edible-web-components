@@ -1,4 +1,9 @@
 /**
+ * SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+ * SPDX-License-Identifier: MIT
+ */
+
+/**
  * @module edible-web-components
  * @description
  * Entry point for the edible-web-components library.

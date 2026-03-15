@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+ * SPDX-License-Identifier: MIT
+ */
+
 const SHEET = new CSSStyleSheet();
 SHEET.replaceSync(`
   edible-combobox {

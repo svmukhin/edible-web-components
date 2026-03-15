@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+ * SPDX-License-Identifier: MIT
+ */
+
 import { describe, it, expect, beforeEach } from 'vitest';
 import { token, clearTokenCache } from '../src/tokens.js';
 

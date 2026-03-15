@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+ * SPDX-License-Identifier: MIT
+ */
+
 /** @type {Record<string, string>} */
 const _cache = {};
 
