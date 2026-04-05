@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/svmukhin/edible-web-components/compare/v1.1.0...v1.1.1) (2026-04-05)
+
+
+### Bug Fixes
+
+* **#8:** added bottom margin while in form element ([d552e69](https://github.com/svmukhin/edible-web-components/commit/d552e696774a6c415874d35c276314b23e5d32ee))
+* **#9:** remove the &lt;input type="hidden"&gt; ([efae04c](https://github.com/svmukhin/edible-web-components/commit/efae04c297e305f52c68844d76295452a356ff47))
+
 ## [1.1.0](https://github.com/svmukhin/edible-web-components/compare/v1.0.0...v1.1.0) (2026-04-05)
 
 
