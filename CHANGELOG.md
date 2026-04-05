@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/svmukhin/edible-web-components/compare/v1.0.0...v1.1.0) (2026-04-05)
+
+
+### Features
+
+* **#3:** added nav-dropdown component ([d00fc2e](https://github.com/svmukhin/edible-web-components/commit/d00fc2e26f954fa7166ed4d3b7c41f5b2d6467b2))
+
+
+### Bug Fixes
+
+* **#6:** &lt;edible-nav-dropdown&gt; trigger button misaligns with surrounding nav links ([274eb1e](https://github.com/svmukhin/edible-web-components/commit/274eb1e84e2a209d522d5c6147bdd6c26c992d54))
+
 ## 1.0.0 (2026-03-15)
 
 
