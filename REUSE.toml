@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: MIT
 
 version = 1
-SPDX-PackageName = "edible-css"
+SPDX-PackageName = "edible-web-components"
 SPDX-PackageSupplier = "Sergei Mukhin <sergei_mukhin@outlook.com>"
-SPDX-PackageDownloadLocation = "https://github.com/svmukhin/edible-css"
+SPDX-PackageDownloadLocation = "https://github.com/svmukhin/edible-web-components"
 
 [[annotations]]
 path = [
@@ -14,7 +14,6 @@ path = [
   ".gitignore",
   "package.json",
   ".markdownlint-cli2.yaml",
-  "backstop.json",
   "**.md",
   "docs/**.md",
   "eslint.config.js",
