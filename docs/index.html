@@ -205,6 +205,13 @@
               <td>Accessible tab panel with keyboard navigation</td>
               <td><a href="examples/edible-tabs.html">View examples</a></td>
             </tr>
+            <tr>
+              <td><code>&lt;edible-nav-dropdown&gt;</code></td>
+              <td>Grouped navigation item with hover and keyboard dropdown</td>
+              <td>
+                <a href="examples/edible-nav-dropdown.html">View examples</a>
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -312,6 +319,24 @@
             <p>This is the history panel. No configuration required.</p>
           </edible-tab>
         </edible-tabs>
+
+        <h4>edible-nav-dropdown</h4>
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <edible-nav-dropdown label="Products">
+              <a href="#">Basic</a>
+              <a href="#">Pro</a>
+              <a href="#">Enterprise</a>
+            </edible-nav-dropdown>
+            <edible-nav-dropdown label="Resources">
+              <a href="#">Documentation</a>
+              <a href="#">Blog</a>
+              <a href="#">Changelog</a>
+            </edible-nav-dropdown>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
       </article>
 
       <article>
