@@ -1,0 +1,162 @@
+<!--
+  SPDX-FileCopyrightText: Copyright (c) 2026 Sergei Mukhin
+  SPDX-License-Identifier: MIT
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>edible-nav-dropdown — Examples</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@svmukhin/edible-css@latest/dist/edible.css"
+    />
+    <script
+      src="https://unpkg.com/@svmukhin/edible-web-components@latest/dist/edible-wc.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <main>
+      <article>
+        <h1>edible-nav-dropdown</h1>
+        <p>
+          A grouped navigation item with an accessible hover and keyboard
+          dropdown. Place it alongside <code>&lt;li&gt;</code> items inside a
+          <code>&lt;nav&gt;&lt;ul&gt;</code>. Child <code>&lt;a&gt;</code> (or
+          <code>&lt;button&gt;</code>) elements become the dropdown items.
+        </p>
+        <p>
+          Opens on <strong>hover</strong> or <kbd>ArrowDown</kbd> on the
+          trigger. Navigate items with <kbd>↑</kbd> / <kbd>↓</kbd>,
+          <kbd>Home</kbd>, <kbd>End</kbd>. Close with <kbd>Escape</kbd> or by
+          moving focus away.
+        </p>
+
+        <hr />
+
+        <h2>Basic</h2>
+        <p>A single grouped item inside a navigation bar.</p>
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <edible-nav-dropdown label="Products">
+              <a href="#">Basic</a>
+              <a href="#">Pro</a>
+              <a href="#">Enterprise</a>
+            </edible-nav-dropdown>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+
+        <hr />
+
+        <h2>Multiple dropdowns</h2>
+        <p>
+          Opening one dropdown automatically closes any other that is open on
+          the same page.
+        </p>
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <edible-nav-dropdown label="Products">
+              <a href="#">Basic</a>
+              <a href="#">Pro</a>
+              <a href="#">Enterprise</a>
+            </edible-nav-dropdown>
+            <edible-nav-dropdown label="Resources">
+              <a href="#">Documentation</a>
+              <a href="#">Blog</a>
+              <a href="#">Changelog</a>
+              <a href="#">Support</a>
+            </edible-nav-dropdown>
+            <edible-nav-dropdown label="Company">
+              <a href="#">About</a>
+              <a href="#">Careers</a>
+              <a href="#">Press</a>
+            </edible-nav-dropdown>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+
+        <hr />
+
+        <h2>With buttons as items</h2>
+        <p>
+          Child elements can be <code>&lt;button&gt;</code> elements instead of
+          links, for actions rather than navigation.
+        </p>
+        <nav>
+          <ul>
+            <li><a href="#">Dashboard</a></li>
+            <edible-nav-dropdown label="Account">
+              <button type="button" id="btn-profile">Edit profile</button>
+              <button type="button" id="btn-settings">Settings</button>
+              <button type="button" id="btn-logout">Sign out</button>
+            </edible-nav-dropdown>
+          </ul>
+        </nav>
+        <p id="action-output" style="color: var(--text-secondary); font-size: var(--font-sm);">
+          Click an item above to see which was selected.
+        </p>
+        <script>
+          customElements.whenDefined('edible-nav-dropdown').then(() => {
+            ['profile', 'settings', 'logout'].forEach((id) => {
+              document.getElementById(`btn-${id}`).addEventListener('click', () => {
+                document.getElementById('action-output').textContent =
+                  `Action triggered: ${id}`;
+              });
+            });
+          });
+        </script>
+
+        <hr />
+
+        <h2>Disabled</h2>
+        <p>
+          The <code>disabled</code> attribute disables the trigger button and
+          makes all child links unreachable.
+        </p>
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <edible-nav-dropdown label="Products" disabled>
+              <a href="#">Basic</a>
+              <a href="#">Pro</a>
+            </edible-nav-dropdown>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+
+        <hr />
+
+        <h2>Inside a full-width site header</h2>
+        <p>Typical use: a sticky top bar with mixed plain links and grouped dropdowns.</p>
+        <header>
+          <nav>
+            <ul>
+              <li><a href="#">edible-wc</a></li>
+              <edible-nav-dropdown label="Docs">
+                <a href="#">Getting started</a>
+                <a href="#">API reference</a>
+                <a href="#">Migration guide</a>
+              </edible-nav-dropdown>
+              <edible-nav-dropdown label="Examples">
+                <a href="edible-combobox.html">edible-combobox</a>
+                <a href="edible-tags-input.html">edible-tags-input</a>
+                <a href="edible-file-drop.html">edible-file-drop</a>
+                <a href="edible-toast.html">edible-toast</a>
+                <a href="edible-tooltip.html">edible-tooltip</a>
+                <a href="edible-badge.html">edible-badge</a>
+                <a href="edible-tabs.html">edible-tabs</a>
+              </edible-nav-dropdown>
+              <li><a href="https://github.com/svmukhin/edible-web-components">GitHub</a></li>
+            </ul>
+          </nav>
+        </header>
+      </article>
+    </main>
+  </body>
+</html>
