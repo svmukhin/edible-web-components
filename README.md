@@ -231,6 +231,52 @@ first/last.
 Full ARIA wiring: `role="tablist"`, `role="tab"`, `role="tabpanel"`,
 `aria-selected`, `aria-controls`, `aria-labelledby`, roving `tabindex`.
 
+### `<edible-nav-dropdown>` — Navigation dropdown
+
+Groups navigation links under a labelled trigger. Place it alongside `<li>`
+items inside a `<nav><ul>`. Child `<a>` or `<button>` elements become the
+dropdown items — the trigger button is built automatically.
+
+```html
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+
+    <edible-nav-dropdown label="Products">
+      <a href="/products/basic">Basic</a>
+      <a href="/products/pro">Pro</a>
+      <a href="/products/enterprise">Enterprise</a>
+    </edible-nav-dropdown>
+
+    <edible-nav-dropdown label="Resources">
+      <a href="/docs">Documentation</a>
+      <a href="/blog">Blog</a>
+    </edible-nav-dropdown>
+
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+```
+
+| Attribute  | Type    | Description                                    |
+| ---------- | ------- | ---------------------------------------------- |
+| `label`    | string  | **Required.** Text shown on the trigger button |
+| `disabled` | boolean | Disables the trigger and all child links       |
+
+**Hover**: opens on `mouseenter`, closes on `mouseleave` (with a brief delay so
+the cursor can travel to the dropdown list without it closing).
+
+**Keyboard on trigger**: `Arrow Down` opens and focuses the first item ·
+`Arrow Up` opens and focuses the last item · `Escape` closes.
+
+**Keyboard inside list**: `Arrow Down/Up` cycle through items (wrapping) ·
+`Arrow Up` on the first item closes and returns focus to the trigger ·
+`Home`/`End` jump to first/last · `Escape` closes and returns focus to the
+trigger.
+
+Opening one `<edible-nav-dropdown>` automatically closes all others on the
+page. Uses the WAI-ARIA APG _Disclosure Navigation Menu_ pattern.
+
 ## Design Tokens
 
 All components inherit EdibleCSS custom properties. Override at `:root` level
