@@ -6,21 +6,29 @@
 const SHEET = new CSSStyleSheet();
 SHEET.replaceSync(`
   edible-nav-dropdown {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     position: relative;
+    vertical-align: middle;
   }
   edible-nav-dropdown > button {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs, 0.25rem);
+    appearance: none;
+    -webkit-appearance: none;
     background: none;
     border: none;
-    padding: var(--space-sm, 0.5rem);
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
     font: inherit;
     font-size: var(--font-md, 1rem);
+    line-height: inherit;
     color: var(--text-primary);
     cursor: pointer;
     border-radius: 4px;
+    text-decoration: none;
   }
   edible-nav-dropdown > button:hover,
   edible-nav-dropdown > button:focus-visible {
