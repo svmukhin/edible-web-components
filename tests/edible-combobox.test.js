@@ -158,4 +158,12 @@ describe('edible-combobox', () => {
     el.value = 'xyz';
     expect(el.value).toBe('');
   });
+
+  it('should include a CSS rule applying margin-bottom of --space-sm inside a form', () => {
+    el = createCombobox({});
+    const allRules = document.adoptedStyleSheets.flatMap((s) => [...s.cssRules]);
+    const rule = allRules.find((r) => r.selectorText === 'form edible-combobox');
+    expect(rule).toBeDefined();
+    expect(rule.style.getPropertyValue('margin-bottom')).toBe('var(--space-sm)');
+  });
 });

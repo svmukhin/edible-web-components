@@ -56,6 +56,9 @@ SHEET.replaceSync(`
   edible-tags-input [data-text-input]::placeholder {
     color: var(--text-secondary);
   }
+  form edible-tags-input {
+    margin-bottom: var(--space-sm);
+  }
 `);
 
 /** @type {boolean} */
