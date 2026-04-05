@@ -174,10 +174,7 @@ export class EdibleTagsInput extends HTMLElement {
     this._input.placeholder = this.getAttribute('placeholder') ?? '';
     this._input.disabled = this.hasAttribute('disabled');
     this._input.setAttribute('aria-label', this.getAttribute('placeholder') ?? 'Add tag');
-    this._hidden = document.createElement('input');
-    this._hidden.type = 'hidden';
-    this._hidden.name = this.getAttribute('name') ?? '';
-    this.append(this._input, this._hidden);
+    this.append(this._input);
   }
 
   /**
@@ -246,7 +243,6 @@ export class EdibleTagsInput extends HTMLElement {
    */
   _syncHidden() {
     const csv = this._tags.join(',');
-    this._hidden.value = csv;
     this._internals?.setFormValue(csv);
   }
 

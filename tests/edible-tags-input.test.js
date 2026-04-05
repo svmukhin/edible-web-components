@@ -32,15 +32,15 @@ describe('edible-tags-input', () => {
     expect(customElements.get('edible-tags-input')).toBeDefined();
   });
 
-  it('should render a text input and a hidden field', () => {
+  it('should render a text input without a hidden field', () => {
     el = createTagsInput();
     expect(el.querySelector('[data-text-input]')).toBeTruthy();
-    expect(el.querySelector('input[type="hidden"]')).toBeTruthy();
+    expect(el.querySelector('input[type="hidden"]')).toBeNull();
   });
 
-  it('should forward the name attribute to the hidden field', () => {
+  it('should expose the name attribute for form participation', () => {
     el = createTagsInput({ name: 'skills' });
-    expect(el.querySelector('input[type="hidden"]').name).toBe('skills');
+    expect(el.getAttribute('name')).toBe('skills');
   });
 
   it('should forward the placeholder attribute to the text input', () => {
@@ -88,11 +88,11 @@ describe('edible-tags-input', () => {
     expect(el.value).toEqual([]);
   });
 
-  it('should update the hidden field value to a comma-separated string after adding tags', () => {
+  it('should expose the current tags as a comma-separated value string', () => {
     el = createTagsInput({ name: 'skills' });
     el.add('javascript');
     el.add('css');
-    expect(el.querySelector('input[type="hidden"]').value).toBe('javascript,css');
+    expect(el.value.join(',')).toBe('javascript,css');
   });
 
   it('should commit a tag on Enter keydown and clear the text input', () => {
