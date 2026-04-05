@@ -155,7 +155,6 @@ export class EdibleCombobox extends HTMLElement {
     if (!match) return;
     this._value = match.value;
     this._input.value = match.label;
-    this._hidden.value = match.value;
     this._internals?.setFormValue(match.value);
     this._close();
   }
@@ -193,10 +192,7 @@ export class EdibleCombobox extends HTMLElement {
     this._listbox.setAttribute('role', 'listbox');
     this._listbox.id = listboxId;
     this._listbox.hidden = true;
-    this._hidden = document.createElement('input');
-    this._hidden.type = 'hidden';
-    this._hidden.name = this.getAttribute('name') ?? '';
-    this.append(this._input, this._listbox, this._hidden);
+    this.append(this._input, this._listbox);
     this._renderOptions(this._options);
   }
 
@@ -324,7 +320,6 @@ export class EdibleCombobox extends HTMLElement {
   _selectItem(li) {
     this._value = li.dataset.value;
     this._input.value = li.textContent;
-    this._hidden.value = this._value;
     this._internals?.setFormValue(this._value);
     this._close();
   }

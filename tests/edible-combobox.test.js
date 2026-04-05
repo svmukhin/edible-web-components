@@ -44,11 +44,11 @@ describe('edible-combobox', () => {
     expect(el.querySelectorAll('option').length).toBe(0);
   });
 
-  it('should render a combobox input, a listbox, and a hidden field', () => {
+  it('should render a combobox input and a listbox without a hidden field', () => {
     el = createCombobox({ ams: 'Amsterdam' });
     expect(el.querySelector('input[role="combobox"]')).toBeTruthy();
     expect(el.querySelector('ul[role="listbox"]')).toBeTruthy();
-    expect(el.querySelector('input[type="hidden"]')).toBeTruthy();
+    expect(el.querySelector('input[type="hidden"]')).toBeNull();
   });
 
   it('should forward the placeholder attribute to the inner input', () => {
@@ -56,9 +56,9 @@ describe('edible-combobox', () => {
     expect(el.querySelector('input[role="combobox"]').placeholder).toBe('Pick one…');
   });
 
-  it('should forward the name attribute to the hidden field', () => {
+  it('should expose the name attribute for form participation', () => {
     el = createCombobox({}, { name: 'city' });
-    expect(el.querySelector('input[type="hidden"]').name).toBe('city');
+    expect(el.getAttribute('name')).toBe('city');
   });
 
   it('should disable the inner input when the disabled attribute is present', () => {
@@ -150,7 +150,6 @@ describe('edible-combobox', () => {
     el.value = 'ber';
     expect(el.value).toBe('ber');
     expect(el.querySelector('input[role="combobox"]').value).toBe('Berlin');
-    expect(el.querySelector('input[type="hidden"]').value).toBe('ber');
   });
 
   it('should ignore a value setter call with an unknown value', () => {
