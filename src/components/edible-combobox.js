@@ -9,6 +9,9 @@ SHEET.replaceSync(`
     display: block;
     position: relative;
   }
+  form edible-combobox {
+    margin-bottom: var(--space-sm);
+  }
   edible-combobox input[role="combobox"] {
     width: 100%;
     box-sizing: border-box;

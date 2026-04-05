@@ -153,4 +153,12 @@ describe('edible-tags-input', () => {
     el.remove('javascript');
     expect(el.querySelector('[data-text-input]').placeholder).toBe('Add a skill…');
   });
+
+  it('should include a CSS rule applying margin-bottom of --space-sm inside a form', () => {
+    el = createTagsInput({});
+    const allRules = document.adoptedStyleSheets.flatMap((s) => [...s.cssRules]);
+    const rule = allRules.find((r) => r.selectorText === 'form edible-tags-input');
+    expect(rule).toBeDefined();
+    expect(rule.style.getPropertyValue('margin-bottom')).toBe('var(--space-sm)');
+  });
 });
