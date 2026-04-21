@@ -233,8 +233,8 @@ Full ARIA wiring: `role="tablist"`, `role="tab"`, `role="tabpanel"`,
 
 ### `<edible-nav-dropdown>` — Navigation dropdown
 
-Groups navigation links under a labelled trigger. Place it alongside `<li>`
-items inside a `<nav><ul>`. Child `<a>` or `<button>` elements become the
+Groups navigation links under a labelled trigger. Wrap it in a `<li>` and
+place it inside a `<nav><ul>`. Child `<a>` or `<button>` elements become the
 dropdown items — the trigger button is built automatically.
 
 ```html
@@ -242,16 +242,20 @@ dropdown items — the trigger button is built automatically.
   <ul>
     <li><a href="/">Home</a></li>
 
-    <edible-nav-dropdown label="Products">
-      <a href="/products/basic">Basic</a>
-      <a href="/products/pro">Pro</a>
-      <a href="/products/enterprise">Enterprise</a>
-    </edible-nav-dropdown>
+    <li>
+      <edible-nav-dropdown label="Products">
+        <a href="/products/basic">Basic</a>
+        <a href="/products/pro">Pro</a>
+        <a href="/products/enterprise">Enterprise</a>
+      </edible-nav-dropdown>
+    </li>
 
-    <edible-nav-dropdown label="Resources">
-      <a href="/docs">Documentation</a>
-      <a href="/blog">Blog</a>
-    </edible-nav-dropdown>
+    <li>
+      <edible-nav-dropdown label="Resources">
+        <a href="/docs">Documentation</a>
+        <a href="/blog">Blog</a>
+      </edible-nav-dropdown>
+    </li>
 
     <li><a href="/contact">Contact</a></li>
   </ul>

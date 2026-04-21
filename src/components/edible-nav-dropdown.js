@@ -21,7 +21,7 @@ SHEET.replaceSync(`
     border: none;
     box-shadow: none;
     margin: 0;
-    padding: 0;
+    padding: var(--space-xs, 0.25rem) var(--space-sm, 0.5rem);
     font: inherit;
     font-size: var(--font-md, 1rem);
     line-height: inherit;
@@ -29,10 +29,12 @@ SHEET.replaceSync(`
     cursor: pointer;
     border-radius: 4px;
     text-decoration: none;
+    transition: background-color 0.2s;
   }
   edible-nav-dropdown > button:hover,
   edible-nav-dropdown > button:focus-visible {
     color: var(--accent);
+    background-color: var(--bg-tertiary);
   }
   edible-nav-dropdown > button[aria-expanded="true"] {
     color: var(--accent);
